@@ -2,16 +2,18 @@
  * @author Dahn Balan
  * @author Mark Emmanuel
  */
-import React from 'react';
+// import React from 'react';
+import * as React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 //used from: https://callstack.github.io/react-native-paper/list-accordion.html
 import { List, Drawer, TextInput } from 'react-native-paper';
+//import { CollapsedItem } from 'react-native-paper/lib/typescript/components/Drawer/Drawer';
 
 
 const MyComponent = () => {
 
   // This isn't showing up, i'll look into it later
-  <Drawer.CollapsedItem
+  <Drawer.CollapsedItem style={{backgroundColor:'red'}}
     icon="inbox"
     label="Inbox"
   />
@@ -66,6 +68,27 @@ const MyComponent = () => {
           label="Second Item"
           active={active === 'second'}
           onPress={() => setActive('second')}
+        />
+      </List.Accordion>
+
+      {/*List to mess around with-------------------------------------------------------------------------------*/}
+      <List.Accordion
+        title="List 3"
+        left={props => <TextInput placeholder='Add list name here 👍'
+        />}
+        expanded={expanded}
+        onPress={handlePress}>
+        <TextInput placeholder='add list item here'
+          value={text}
+          onChangeText={text => setText(text)}
+        />
+        <TextInput placeholder='add list item here'
+          value={text}
+          onChangeText={text => setText(text)}
+        />
+        <TextInput placeholder='add list item here'
+          value={text}
+          onChangeText={text => setText(text)}
         />
       </List.Accordion>
     </List.Section>
