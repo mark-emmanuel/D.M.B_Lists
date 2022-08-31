@@ -1,6 +1,6 @@
 /**
- * @author Mark Emmanuel
  * @author Dahn Balan
+ * @author Mark Emmanuel
  */
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
