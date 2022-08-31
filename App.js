@@ -15,6 +15,10 @@ export default function App() {
   );
 }
 
+/* 
+------------------------------------------------------------------------------------------------------------------------------ A long line of dashes heh.
+*/
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
