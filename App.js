@@ -3,35 +3,70 @@
  * @author Mark Emmanuel
  */
 import React from 'react';
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 //used from: https://callstack.github.io/react-native-paper/list-accordion.html
-import { List } from 'react-native-paper';
+import { List, Drawer, TextInput } from 'react-native-paper';
 
 
 const MyComponent = () => {
-  const [expanded, setExpanded] = React.useState(true);
 
+  // This isn't showing up, i'll look into it later
+  <Drawer.CollapsedItem
+    icon="inbox"
+    label="Inbox"
+  />
+
+  const [expanded, setExpanded] = React.useState(true);
+  // This is for the items in the list
+  const [active, setActive] = React.useState('');
+  // This is for the list folder to expand
   const handlePress = () => setExpanded(!expanded);
+  // This is for text input
+  const [text, setText] = React.useState("");
 
 
   return (
     //<List.Section title="Accordions">
     <List.Section style={styles.container}>
+
+      <Text style={{ justifyContent: 'center' }}>experiments 🤷‍♂️</Text>
+
       <List.Accordion
-        title="Uncontrolled Accordion"
+        //title="Uncontrolled Accordiion"
+        title="List 1"
         left={props => <List.Icon {...props} icon="folder" />}>
-        <List.Item title="First item" />
-        <List.Item title="Second item" />
+        <Drawer.Item
+          label="First Item"
+          active={active === 'first'}
+          onPress={() => setActive('first')}
+        />
+        <Drawer.Item
+          label="Second Item"
+          active={active === 'second'}
+          onPress={() => setActive('second')}
+        />
+        <TextInput placeholder='add list item here'
+          value={text}
+          onChangeText={text => setText(text)}
+        />
       </List.Accordion>
 
       <List.Accordion
-        title="Controlled Accordion"
+        //title="Controlled Accordion"
+        title="List 2"
         left={props => <List.Icon {...props} icon="folder" />}
         expanded={expanded}
         onPress={handlePress}>
-        <List.Item title="First item" />
-        <List.Item title="Second item" />
+        <Drawer.Item
+          label="First Item"
+          active={active === 'first'}
+          onPress={() => setActive('first')}
+        />
+        <Drawer.Item
+          label="Second Item"
+          active={active === 'second'}
+          onPress={() => setActive('second')}
+        />
       </List.Accordion>
     </List.Section>
   );
@@ -44,26 +79,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
     alignItems: 'stretch',
-    justifyContent: 'space-evenly',
+    justifyContent: 'center',
   }
 });
 
-// This was the orgininal code that was created by npm create
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-// export default function App() {
-//   return (
-//     <View style={styles.container}>
-//       <Text>Our To-do list app</Text>
-//       <StatusBar style="auto" />
-//     </View>
-//   );
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });
