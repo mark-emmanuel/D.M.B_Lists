@@ -1,29 +1,108 @@
 /**
- * @author Mark Emmanuel
  * @author Dahn Balan
+ * @author Mark Emmanuel
  */
-import React from 'react';
-import { StatusBar } from 'expo-status-bar';
+// import React from 'react';
+import * as React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+//used from: https://callstack.github.io/react-native-paper/list-accordion.html
+import { List, Drawer, TextInput } from 'react-native-paper';
+//import { CollapsedItem } from 'react-native-paper/lib/typescript/components/Drawer/Drawer';
 
-export default function App() {
+
+const MyComponent = () => {
+
+  // This isn't showing up, i'll look into it later
+  <Drawer.CollapsedItem style={{backgroundColor:'red'}}
+    icon="inbox"
+    label="Inbox"
+  />
+
+  const [expanded, setExpanded] = React.useState(true);
+  // This is for the items in the list
+  const [active, setActive] = React.useState('');
+  // This is for the list folder to expand
+  const handlePress = () => setExpanded(!expanded);
+  // This is for text input
+  const [text, setText] = React.useState("");
+
+
   return (
-    <View style={styles.container}>
-      <Text>Our To-do list app</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+    //<List.Section title="Accordions">
+    <List.Section style={styles.container}>
 
-/* 
------------------------------------------------------------------------------------------------------------------------------- A long line of dashes heh.
-*/
+      <Text style={{ justifyContent: 'center' }}>experiments 🤷‍♂️</Text>
+
+      <List.Accordion
+        //title="Uncontrolled Accordiion"
+        title="List 1"
+        left={props => <List.Icon {...props} icon="folder" />}>
+        <Drawer.Item
+          label="First Item"
+          active={active === 'first'}
+          onPress={() => setActive('first')}
+        />
+        <Drawer.Item
+          label="Second Item"
+          active={active === 'second'}
+          onPress={() => setActive('second')}
+        />
+        <TextInput placeholder='add list item here'
+          value={text}
+          onChangeText={text => setText(text)}
+        />
+      </List.Accordion>
+
+      <List.Accordion
+        //title="Controlled Accordion"
+        title="List 2"
+        left={props => <List.Icon {...props} icon="folder" />}
+        expanded={expanded}
+        onPress={handlePress}>
+        <Drawer.Item
+          label="First Item"
+          active={active === 'first'}
+          onPress={() => setActive('first')}
+        />
+        <Drawer.Item
+          label="Second Item"
+          active={active === 'second'}
+          onPress={() => setActive('second')}
+        />
+      </List.Accordion>
+
+      {/*List to mess around with-------------------------------------------------------------------------------*/}
+      <List.Accordion
+        title="List 3"
+        left={props => <TextInput placeholder='Add list name here 👍'
+        />}
+        expanded={expanded}
+        onPress={handlePress}>
+        <TextInput placeholder='add list item here'
+          value={text}
+          onChangeText={text => setText(text)}
+        />
+        <TextInput placeholder='add list item here'
+          value={text}
+          onChangeText={text => setText(text)}
+        />
+        <TextInput placeholder='add list item here'
+          value={text}
+          onChangeText={text => setText(text)}
+        />
+      </List.Accordion>
+    </List.Section>
+  );
+};
+
+export default MyComponent;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
+    backgroundColor: 'white',
+    alignItems: 'stretch',
     justifyContent: 'center',
-  },
+  }
 });
+
